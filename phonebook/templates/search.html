@@ -1,0 +1,21 @@
+<!-- templates/search_results.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Search Results</h2>
+
+    <form method="get" action="{% url 'search_view' %}" class="mb-3">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if results %}
+        <ul>
+            {% for contact in results %}
+                <li>{{ contact.name }} - {{ contact.phone_number }} - {{ contact.email }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+{% endblock %}
